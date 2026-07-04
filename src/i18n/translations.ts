@@ -148,6 +148,8 @@ export interface Translations {
     pause: string
     resume: string
     reset: string
+    saveRecipe: string
+    savedConfirmation: string
   }
   saved: {
     title: string
@@ -168,7 +170,7 @@ const en: Translations = {
   },
   form: {
     method: 'Method',
-    methodOptions: { v60: 'V60 (4:6)', frenchPress: 'French press' },
+    methodOptions: { v60: 'V60', frenchPress: 'French press' },
     recipe: 'Recipe',
     v60RecipeOptions: {
       kasuya46: 'Kasuya 4:6',
@@ -221,7 +223,7 @@ const en: Translations = {
     },
     sourceLabel: 'Source:',
     table: { time: 'Time', step: 'Step', water: 'Water', total: 'Total' },
-    startTimer: 'Start timer',
+    startTimer: 'Go to timer',
     saveRecipe: 'Save recipe',
     backToEdit: '← Edit parameters',
   },
@@ -330,6 +332,8 @@ const en: Translations = {
     pause: 'Pause',
     resume: 'Resume',
     reset: 'Reset',
+    saveRecipe: 'Save this recipe',
+    savedConfirmation: 'Recipe saved!',
   },
   saved: {
     title: 'Saved recipes',
@@ -350,7 +354,7 @@ const es: Translations = {
   },
   form: {
     method: 'Método',
-    methodOptions: { v60: 'V60 (4:6)', frenchPress: 'Prensa francesa' },
+    methodOptions: { v60: 'V60', frenchPress: 'Prensa francesa' },
     recipe: 'Receta',
     v60RecipeOptions: {
       kasuya46: 'Kasuya 4:6',
@@ -403,7 +407,7 @@ const es: Translations = {
     },
     sourceLabel: 'Fuente:',
     table: { time: 'Tiempo', step: 'Paso', water: 'Agua', total: 'Total' },
-    startTimer: 'Iniciar temporizador',
+    startTimer: 'Ir al temporizador',
     saveRecipe: 'Guardar receta',
     backToEdit: '← Editar parámetros',
   },
@@ -416,7 +420,7 @@ const es: Translations = {
       bloom: 'Vertido inicial',
       bloomNote: 'Vertido en espiral desde el centro hacia afuera para mojar todo el café',
       swirl1: 'Girar',
-      swirl1Note: 'Gira la V60 hasta que la mezcla se vea uniforme y déjala florecer',
+      swirl1Note: 'Gira la V60 hasta que la mezcla se vea uniforme y déjala hacer el bloom',
       pour2: 'Vertido principal 1',
       pour2Note: (grams) => `Vierte desde el centro hacia afuera durante ~30s, hasta llegar a ${grams}g en total`,
       pour3: 'Vertido principal 2',
@@ -517,6 +521,8 @@ const es: Translations = {
     pause: 'Pausar',
     resume: 'Reanudar',
     reset: 'Reiniciar',
+    saveRecipe: 'Guardar esta receta',
+    savedConfirmation: '¡Receta guardada!',
   },
   saved: {
     title: 'Recetas guardadas',

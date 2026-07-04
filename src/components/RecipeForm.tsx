@@ -34,6 +34,7 @@ export function RecipeForm({ input, onChange }: Props) {
             name="v60Recipe"
             value={input.v60Recipe}
             onChange={(v60Recipe) => onChange({ v60Recipe })}
+            mobileColumns={2}
             options={[
               { value: 'kasuya46', label: t.form.v60RecipeOptions.kasuya46 },
               { value: 'hoffmann', label: t.form.v60RecipeOptions.hoffmann },
@@ -46,6 +47,7 @@ export function RecipeForm({ input, onChange }: Props) {
             name="frenchPressRecipe"
             value={input.frenchPressRecipe}
             onChange={(frenchPressRecipe) => onChange({ frenchPressRecipe })}
+            mobileColumns={2}
             options={[
               { value: 'standard', label: t.form.frenchPressRecipeOptions.standard },
               { value: 'hoffmann', label: t.form.frenchPressRecipeOptions.hoffmann },

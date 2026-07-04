@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- full-bleed square background so OS-level icon masking (iOS/Android adaptive,
+       PWA maskable) does the corner rounding, not the asset itself -->
+  <rect x="0" y="0" width="512" height="512" fill="#f4ede0" />
+
+  <g>
+    <!-- corner blobs, matching the feature card treatment: moss top right, ochre bottom left -->
+    <ellipse cx="480" cy="40" rx="145" ry="120" fill="#5f6b47" opacity="0.24" transform="rotate(18 480 40)" />
+    <ellipse cx="30" cy="470" rx="160" ry="130" fill="#c2933c" opacity="0.26" transform="rotate(-12 30 470)" />
+
+    <!-- brew mark: scaled up as a group for legibility down to favicon size -->
+    <g transform="translate(250,268) scale(1.04) translate(-256,-268)">
+      <!-- steam -->
+      <path d="M 213,172 C 198,152 228,137 213,115 C 200,97 223,82 210,61"
+            fill="none" stroke="#5f6b47" stroke-width="15" stroke-linecap="round" opacity="0.85" />
+      <path d="M 273,172 C 258,152 288,137 273,115 C 260,97 283,82 270,61"
+            fill="none" stroke="#5f6b47" stroke-width="15" stroke-linecap="round" opacity="0.85" />
+
+      <!-- handle: an open "C" flush against the body's right edge, not a floating ring -->
+      <path d="M 344,272 C 400,264 402,364 344,358"
+            fill="none" stroke="#e3d7c2" stroke-width="27" stroke-linecap="round" />
+      <path d="M 344,272 C 400,264 402,364 344,358"
+            fill="none" stroke="#fbf6ec" stroke-width="17" stroke-linecap="round" />
+
+      <!-- mug body: tapered (wider at the rim, narrower at the base) so it reads as a vessel, not a box -->
+      <path d="M 145,196
+               L 343,196
+               L 323,392
+               Q 321,408 305,408
+               L 183,408
+               Q 167,408 165,392
+               Z"
+            fill="#fbf6ec" stroke="#e3d7c2" stroke-width="7" stroke-linejoin="round" />
+
+      <!-- rim: an ellipse "lid" so the top reads as a round opening viewed from above, not a flat edge -->
+      <ellipse cx="244" cy="196" rx="99" ry="24" fill="#fbf6ec" stroke="#e3d7c2" stroke-width="7" />
+
+      <!-- coffee surface, inset from the rim so a visible ring of ceramic shows around it -->
+      <ellipse cx="244" cy="196" rx="72" ry="15" fill="#a24d2c" />
+
+      <!-- leaf glyph accent (garnish on the coffee), matching the app's h1 leaf motif exactly:
+           a square with two opposite corners fully rounded (0% 100% 0% 100%) -->
+      <path d="M 0,16 A 16,16 0 0,1 16,0 L 32,0 L 32,16 A 16,16 0 0,1 16,32 L 0,32 Z"
+            fill="#5f6b47"
+            transform="translate(274,187) rotate(35)" />
+    </g>
+  </g>
+</svg>

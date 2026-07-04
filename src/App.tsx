@@ -93,7 +93,9 @@ function App() {
         <ScheduleView plan={plan} onBack={() => setView('setup')} onStart={() => setView('timer')} />
       )}
 
-      {view === 'timer' && <TimerView plan={plan} onExit={() => setView('preview')} />}
+      {view === 'timer' && (
+        <TimerView plan={plan} onExit={() => setView('preview')} onSaveRecipe={handleSaveRequest} />
+      )}
 
       <footer className="app__footer">{t.app.footer}</footer>
     </div>

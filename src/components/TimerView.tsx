@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import type { BrewPlan } from '../domain/types'
 import { formatClock, getRecipeVariant } from '../domain'
 import { useTimer } from '../hooks/useTimer'
@@ -10,10 +10,14 @@ import { translateStep } from '../i18n/steps'
 interface Props {
   plan: BrewPlan
   onExit: () => void
+  onSaveRecipe: (name: string) => void
 }
 
-export function TimerView({ plan, onExit }: Props) {
+export function TimerView({ plan, onExit, onSaveRecipe }: Props) {
   const { t } = useLanguage()
+  const [savingRecipe, setSavingRecipe] = useState(false)
+  const [justSaved, setJustSaved] = useState(false)
+  const [recipeName, setRecipeName] = useState('')
   const variant = getRecipeVariant(plan.input)
   const { elapsed, running, start, pause, resume, reset, currentStepIndex, nextStep } = useTimer({
     steps: plan.steps,
@@ -36,6 +40,7 @@ export function TimerView({ plan, onExit }: Props) {
 
   const currentStep = currentStepIndex >= 0 ? translateStep(plan.steps[currentStepIndex], plan.method, variant, currentStepIndex, t) : null
   const nextStepTranslated = nextStep ? translateStep(nextStep, plan.method, variant, nextStepIndex, t) : null
+  const currentCumulativeWater = currentStepIndex >= 0 ? plan.steps[currentStepIndex].cumulativeWaterGrams : null
 
   // Stop polling once the brew is done instead of ticking forever in the background.
   useEffect(() => {
@@ -48,9 +53,47 @@ export function TimerView({ plan, onExit }: Props) {
         {t.timer.backToRecipe}
       </button>
 
-      <div className="timer__clock">{formatClock(Math.floor(elapsed))}</div>
+      <div className="timer__clock">
+        <span className="timer__clock-time">{formatClock(Math.floor(elapsed))}</span>
+        {currentCumulativeWater !== null && <span className="timer__clock-water">{currentCumulativeWater}g</span>}
+      </div>
 
       <div className="timer__status">{isDone ? t.timer.done : currentStep ? t.timer.now(currentStep.label) : t.timer.ready}</div>
+
+      {isDone && !justSaved && !savingRecipe && (
+        <button type="button" className="btn btn--primary" onClick={() => setSavingRecipe(true)}>
+          {t.timer.saveRecipe}
+        </button>
+      )}
+
+      {isDone && savingRecipe && (
+        <form
+          className="save-form"
+          onSubmit={(e) => {
+            e.preventDefault()
+            if (!recipeName.trim()) return
+            onSaveRecipe(recipeName.trim())
+            setSavingRecipe(false)
+            setJustSaved(true)
+          }}
+        >
+          <input
+            autoFocus
+            type="text"
+            placeholder={t.saved.namePlaceholder}
+            value={recipeName}
+            onChange={(e) => setRecipeName(e.target.value)}
+          />
+          <button type="submit" className="btn btn--primary">
+            {t.saved.save}
+          </button>
+          <button type="button" className="btn" onClick={() => setSavingRecipe(false)}>
+            {t.saved.cancel}
+          </button>
+        </form>
+      )}
+
+      {isDone && justSaved && <div className="timer__saved-note">{t.timer.savedConfirmation}</div>}
 
       {!isDone && currentStep?.note && <div className="timer__current-note">{currentStep.note}</div>}
 
