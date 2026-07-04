@@ -6,6 +6,7 @@ import { useWakeLock } from '../hooks/useWakeLock'
 import { playFinishAlert, playPourAlert, unlockAudio } from '../audio/beep'
 import { useLanguage } from '../i18n/LanguageContext'
 import { translateStep } from '../i18n/steps'
+import { StepIcon } from './StepIcon'
 
 interface Props {
   plan: BrewPlan
@@ -58,7 +59,12 @@ export function TimerView({ plan, onExit, onSaveRecipe }: Props) {
         {currentCumulativeWater !== null && <span className="timer__clock-water">{currentCumulativeWater}g</span>}
       </div>
 
-      <div className="timer__status">{isDone ? t.timer.done : currentStep ? t.timer.now(currentStep.label) : t.timer.ready}</div>
+      <div className="timer__status">
+        {!isDone && currentStepIndex >= 0 && (
+          <StepIcon kind={plan.steps[currentStepIndex].kind} className="timer__status-icon" />
+        )}
+        {isDone ? t.timer.done : currentStep ? t.timer.now(currentStep.label) : t.timer.ready}
+      </div>
 
       {isDone && !justSaved && !savingRecipe && (
         <button type="button" className="btn btn--primary" onClick={() => setSavingRecipe(true)}>
@@ -119,6 +125,7 @@ export function TimerView({ plan, onExit, onSaveRecipe }: Props) {
               }
             >
               <div className="timer__step-row">
+                <StepIcon kind={step.kind} className="timer__step-icon" />
                 <span className="timer__step-time">{formatClock(step.atSeconds)}</span>
                 <span className="timer__step-label">{label}</span>
                 <span className="timer__step-grams">{step.waterGrams > 0 ? `${step.waterGrams}g` : ''}</span>

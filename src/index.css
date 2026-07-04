@@ -536,7 +536,18 @@ button:focus-visible {
 }
 
 .timer__status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   font-size: 1.05rem;
+}
+
+.timer__status-icon {
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  color: var(--accent);
 }
 
 .timer__current-note {
@@ -605,8 +616,17 @@ button:focus-visible {
 
 .timer__step-row {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   gap: 10px;
+}
+
+.timer__step-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: inherit;
+  opacity: 0.85;
 }
 
 .timer__step-time {
