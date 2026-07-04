@@ -17,8 +17,8 @@ export default defineConfig({
         start_url: '/cafe-helper/',
         scope: '/cafe-helper/',
         display: 'standalone',
-        background_color: '#1c1917',
-        theme_color: '#1c1917',
+        background_color: '#f4ede0',
+        theme_color: '#f4ede0',
         icons: [
           {
             src: 'icons/icon-192.png',

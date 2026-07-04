@@ -5,3 +5,10 @@ dist-ssr
 .DS_Store
 .vscode/*
 !.vscode/extensions.json
+
+# Stray tsc build output that should never sit next to vite.config.ts
+# (Vite resolves .js configs before .ts, so a stale compiled file here
+# would silently shadow real edits to vite.config.ts)
+/vite.config.js
+/vite.config.d.ts
+*.tsbuildinfo
